@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Select from "../util/Select";
+import Select from "../util/SelectBox";
 // import RadioButon from "../util/RadioButon";
 import TextField from "../util/TextField";
 // import Accordion from "../util/Accordian";
@@ -21,7 +21,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 // import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-
+import { dataFields } from "../../Const";
 import { Grid, Container } from "@mui/material";
 
 const style = {
@@ -86,6 +86,7 @@ const Home = () => {
             name={field.name}
             onChange={handleFieldValueChange}
             value={courseOutline[field.name]}
+            required={`${field.title}${field.required?"*":""}`}
           />
         );
       case "textArea":
@@ -97,126 +98,35 @@ const Home = () => {
             onChange={handleFieldValueChange}
             name={field.name}
             value={courseOutline[field.name]}
+            required={`${field.title}${field.required?"*":""}`}
           />
         );
       case "select":
         return (
           <Select
-            onChange={handleFieldValueChange}
+            changeHandler={handleFieldValueChange}
             name={field.name}
-            value={courseOutline[field.name]}
-            test={field.drop}
+            label={field.label}
+            selectedValue={courseOutline[field.name]}
+            values={field.values}
+            required={field.required}
           />
         );
+      default:
+        return ;
     }
   };
 
-  const dropDownTest = [
-    { value: "value1", label: "label 1" },
-    { value: "value2", label: "label 2" },
-    { value: "value3", label: "label 3" },
-    { value: "value4", label: "label 4" },
-  ];
-  const dataFields = [
-    {
-      title: "Name of the Programme",
-      name: "programmeName",
-      type: "select",
-      drop: dropDownTest,
-    },
-    {
-      title: "Name of the Course",
-      name: "courseName",
-      type: "text",
-      label: "Course Name",
-      required: true,
-    },
-    {
-      title: "Nature of the Course ",
-      name: "courseNature",
-      type: "select",
-    },
-    {
-      title: "Semester",
-      name: "semester",
-      type: "select",
-    },
-    {
-      title: "Lecturer(s)",
-      name: "lecture",
-      type: "textArea",
-      label: "Lecturer Name",
-    },
-    {
-      title: "Coordinator Name *",
-      name: "coordinatorName",
-      type: "textArea",
-      label: "Coordinator Name ",
-    },
-    {
-      title: "Year",
-      name: "year",
-      type: "select",
-    },
-    {
-      title: "No of Credits *",
-      name: "noCredits",
-      type: "text",
-      label: "No of Credits *",
-    },
-    {
-      title: "No of Contact Hours *",
-      name: "noContactHours",
-      type: "text",
-      label: "No of Contact Hours *",
-    },
-    {
-      title: "Course Description *",
-      name: "courseDescription",
-      type: "text",
-      label: "Course Description",
-    },
-    {
-      title: "Course Objectives *",
-      name: "courseObjectives",
-      type: "text",
-      label: "Course Objectives",
-    },
-    {
-      title: "Course Outcome *",
-      name: "courseOutcome",
-      type: "text",
-      label: "Course Outcome",
-    },
-    {
-      title: "Text Book",
-      name: "textBook",
-      type: "textArea",
-      label: "Text Book",
-    },
-    {
-      title: "References",
-      name: "references",
-      type: "textArea",
-      label: "References",
-    },
-    {
-      title: "Internet Resources",
-      name: "internetResources",
-      type: "text",
-      label: "Internet Resources",
-    },
-  ];
   return (
-    <Container>
-      <Paper elevation={24}>
+    <Container style={{margin:"40px auto"}}>
+      <Paper elevation={4}>
         <Grid container>
           <List sx={style} component="nav" aria-label="mailbox folders">
             {dataFields.map((field) => (
               <>
                 <ListItem style={{ padding: "30px 20px" }}>
                   <Grid item sm={3}>
-                    {field.title}
+                    {`${field.title} ${field.required?"*":""}`}
                   </Grid>
                   <Grid item sm={9}>
                     {getComponent(field)}
