@@ -70,7 +70,7 @@ const style = {
 // };
 
 const Home = () => {
-  const [ courseOutline, setCourseOutline ] = useState({});
+  const [courseOutline, setCourseOutline] = useState({});
   const handleFieldValueChange = (event) =>
     setCourseOutline({
       ...courseOutline,
@@ -105,28 +105,106 @@ const Home = () => {
             onChange={handleFieldValueChange}
             name={field.name}
             value={courseOutline[field.name]}
+            test={field.drop}
           />
         );
     }
   };
+
+  const dropDownTest = [
+    { value: "value1", label: "label 1" },
+    { value: "value2", label: "label 2" },
+    { value: "value3", label: "label 3" },
+    { value: "value4", label: "label 4" },
+  ];
   const dataFields = [
     {
       title: "Name of the Programme",
       name: "programmeName",
       type: "select",
+      drop: dropDownTest,
     },
     {
       title: "Name of the Course",
-      name: "course",
+      name: "courseName",
       type: "text",
       label: "Course Name",
       required: true,
+    },
+    {
+      title: "Nature of the Course ",
+      name: "courseNature",
+      type: "select",
+    },
+    {
+      title: "Semester",
+      name: "semester",
+      type: "select",
     },
     {
       title: "Lecturer(s)",
       name: "lecture",
       type: "textArea",
       label: "Lecturer Name",
+    },
+    {
+      title: "Coordinator Name *",
+      name: "coordinatorName",
+      type: "textArea",
+      label: "Coordinator Name ",
+    },
+    {
+      title: "Year",
+      name: "year",
+      type: "select",
+    },
+    {
+      title: "No of Credits *",
+      name: "noCredits",
+      type: "text",
+      label: "No of Credits *",
+    },
+    {
+      title: "No of Contact Hours *",
+      name: "noContactHours",
+      type: "text",
+      label: "No of Contact Hours *",
+    },
+    {
+      title: "Course Description *",
+      name: "courseDescription",
+      type: "text",
+      label: "Course Description",
+    },
+    {
+      title: "Course Objectives *",
+      name: "courseObjectives",
+      type: "text",
+      label: "Course Objectives",
+    },
+    {
+      title: "Course Outcome *",
+      name: "courseOutcome",
+      type: "text",
+      label: "Course Outcome",
+    },
+    {
+      title: "Text Book",
+      name: "textBook",
+      type: "textArea",
+      label: "Text Book",
+    },
+    {
+      title: "References",
+      name: "references",
+      type: "textArea",
+      label: "References",
+    },
+    {
+      title: "Internet Resources",
+      name: "internetResources",
+      type: "text",
+      label: "Internet Resources",
     },
   ];
   return (
@@ -147,164 +225,8 @@ const Home = () => {
                 <Divider />
               </>
             ))}
-            {/* <ListItem>
-              <Grid item sm={3}>
-                Name of the Programme
-              </Grid>
-              <Grid item sm={9}>
-                <Select />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Name of the Course
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="Course Name *"
-                  id="courseNamew"
-                  placeholder="Course Name"
-                  multiline={false}
-                  rows={3}
-                />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Nature of the Course
-              </Grid>
-              <Grid item sm={9}>
-                <Select />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Semester
-              </Grid>
-              <Grid item sm={9}>
-                <Select />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Lecturer(s)
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="Lecturer *"
-                  id="lecturer"
-                  placeholder="Lecturer"
-                  multiline={true}
-                  rows={3}
-                />
-                {/* <Select /> */}
-            {/* </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Name of the Coordinator
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="Coordinator Name *"
-                  id="coordinatorName"
-                  placeholder="Coordinator Name"
-                  multiline={false}
-                  rows={3}
-                />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Year
-              </Grid>
-              <Grid item sm={9}>
-                <Select />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                No of Credits
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="No of Credits *"
-                  id="noCredits"
-                  placeholder="No of Credits"
-                  multiline={false}
-                  rows={3}
-                />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                No of Contact Hours
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="No of Contact Hours *"
-                  id="noContactHours"
-                  placeholder="No of Contact Hours"
-                  multiline={false}
-                  rows={3}
-                />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Course Description
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="Course Description *"
-                  id="courseDescription"
-                  placeholder="Course Description"
-                  multiline={true}
-                  rows={3}
-                />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Course Objectives
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="Course Objectives *"
-                  id="courseObjectives"
-                  placeholder="Course Objectives"
-                  multiline={true}
-                  rows={3}
-                />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Course Outcome
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="Course Outcome *"
-                  id="courseOutcome"
-                  placeholder="Course Outcome"
-                  multiline={true}
-                  rows={3}
-                />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
+            {/* 
+           
               <Grid item sm={3}>
                 Assessment Method
               </Grid>
@@ -313,52 +235,7 @@ const Home = () => {
                 <CheckBox color="primary" value="" />
               </Grid>
             </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Textbook
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="Text Book *"
-                  id="textbook"
-                  placeholder="Text Book"
-                  multiline={true}
-                  rows={3}
-                />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                References
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="References *"
-                  id="references"
-                  placeholder="References"
-                  multiline={true}
-                  rows={3}
-                />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Grid item sm={3}>
-                Internet Resources
-              </Grid>
-              <Grid item sm={9}>
-                <TextField
-                  label="Internet Resources *"
-                  id="internetResources"
-                  placeholder="Internet Resources"
-                  multiline={true}
-                  rows={3}
-                />
-              </Grid>
-            </ListItem>
-            <Divider /> */}
+*/}
           </List>
         </Grid>
       </Paper>
