@@ -1,25 +1,25 @@
 import React from "react";
+import { useState } from "react";
+import Select from "../util/Select";
+// import RadioButon from "../util/RadioButon";
+import TextField from "../util/TextField";
+// import Accordion from "../util/Accordian";
+// import Button from "../util/Button";
+// import CheckBox from "../util/CheckBox";
+// import TextArea from "../util/TextArea";
+// import Layout from "../util/Layout";
+// import Table from "../util/Table";
 
-import Select from "../../utilities/Select";
-import RadioButon from "../../utilities/RadioButon";
-import TextField from "../../utilities/TextField";
-import Accordion from "../../utilities/Accordian";
-import Button from "../../utilities/Button";
-import CheckBox from "../../utilities/CheckBox";
-import TextArea from "../../utilities/TextArea";
-import Layout from "../../utilities/Layout";
-import Table from "../../utilities/Table";
-
-import Box from "@mui/material/Box";
+// import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
-import Card from "../../utilities/Card";
+// import Card from "../util/Card";
 
 // import List from "../../List/List";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
+// import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 
 import { Grid, Container } from "@mui/material";
@@ -29,22 +29,125 @@ const style = {
   bgcolor: "background.paper",
 };
 
+// const listItem = (props) => {
+//   const { compType, field } = props;
+//   const getComponent = (type) => {
+//     switch (type) {
+//       case "text":
+//         return (
+//           <TextField
+//             label={field.label || ""}
+//             placeholder={field.placeHolder || ""}
+//           />
+//         );
+//       case "textArea":
+//         return (
+//           <TextField
+//             label={field.label || ""}
+//             placeholder={field.placeHolder || ""}
+//             multiline
+//             rows={3}
+//           />
+//         );
+//       case "select":
+//         return <Select />;
+//     }
+//   };
+//   return (
+//     <>
+//       <ListItem>
+//         <Grid item sm={3}>
+//           Name of the Stream
+//         </Grid>
+//         <Grid item sm={9}>
+//           {/* <Select /> */}
+//           {getComponent(compType)}
+//         </Grid>
+//       </ListItem>
+//       <Divider />
+//     </>
+//   );
+// };
+
 const Home = () => {
+  const [ courseOutline, setCourseOutline ] = useState({});
+  const handleFieldValueChange = (event) =>
+    setCourseOutline({
+      ...courseOutline,
+      [event.target.name]: event.target.value,
+    });
+
+  const getComponent = (field) => {
+    switch (field.type) {
+      case "text":
+        return (
+          <TextField
+            label={field.label || ""}
+            name={field.name}
+            onChange={handleFieldValueChange}
+            value={courseOutline[field.name]}
+          />
+        );
+      case "textArea":
+        return (
+          <TextField
+            label={field.label || ""}
+            multiline
+            rows={3}
+            onChange={handleFieldValueChange}
+            name={field.name}
+            value={courseOutline[field.name]}
+          />
+        );
+      case "select":
+        return (
+          <Select
+            onChange={handleFieldValueChange}
+            name={field.name}
+            value={courseOutline[field.name]}
+          />
+        );
+    }
+  };
+  const dataFields = [
+    {
+      title: "Name of the Programme",
+      name: "programmeName",
+      type: "select",
+    },
+    {
+      title: "Name of the Course",
+      name: "course",
+      type: "text",
+      label: "Course Name",
+      required: true,
+    },
+    {
+      title: "Lecturer(s)",
+      name: "lecture",
+      type: "textArea",
+      label: "Lecturer Name",
+    },
+  ];
   return (
     <Container>
-      <Paper elevation={24} >
+      <Paper elevation={24}>
         <Grid container>
           <List sx={style} component="nav" aria-label="mailbox folders">
-            <ListItem>
-              <Grid item sm={3}>
-                Name of the Stream
-              </Grid>
-              <Grid item sm={9}>
-                <Select />
-              </Grid>
-            </ListItem>
-            <Divider />
-            <ListItem>
+            {dataFields.map((field) => (
+              <>
+                <ListItem style={{ padding: "30px 20px" }}>
+                  <Grid item sm={3}>
+                    {field.title}
+                  </Grid>
+                  <Grid item sm={9}>
+                    {getComponent(field)}
+                  </Grid>
+                </ListItem>
+                <Divider />
+              </>
+            ))}
+            {/* <ListItem>
               <Grid item sm={3}>
                 Name of the Programme
               </Grid>
@@ -99,7 +202,7 @@ const Home = () => {
                   rows={3}
                 />
                 {/* <Select /> */}
-              </Grid>
+            {/* </Grid>
             </ListItem>
             <Divider />
             <ListItem>
@@ -255,7 +358,7 @@ const Home = () => {
                 />
               </Grid>
             </ListItem>
-            <Divider />
+            <Divider /> */}
           </List>
         </Grid>
       </Paper>
