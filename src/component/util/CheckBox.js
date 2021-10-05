@@ -3,12 +3,14 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
-export default function CheckboxLabels() {
+export default function CheckboxLabels(props) {
+  const { name, label, values, required, chageHandler } = props;
   return (
     <FormGroup>
-      {/* <FormControlLabel control={<Checkbox  />} label="Label" />
-      <FormControlLabel  control={<Checkbox />} label="Disabled" /> */}
-      <Checkbox />
+      {values.map((value) => (
+        <FormControlLabel control={<Checkbox />} label={value} />
+      ))}
+      {/* <FormControlLabel control={<Checkbox />} label="Label" /> */}
     </FormGroup>
   );
 }

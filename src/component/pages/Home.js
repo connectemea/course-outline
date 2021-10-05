@@ -1,16 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import Select from "../util/SelectBox";
-// import RadioButon from "../util/RadioButon";
 import TextField from "../util/TextField";
-// import Accordion from "../util/Accordian";
-// import Button from "../util/Button";
-// import CheckBox from "../util/CheckBox";
-// import TextArea from "../util/TextArea";
-// import Layout from "../util/Layout";
-// import Table from "../util/Table";
-
-// import Box from "@mui/material/Box";
+import CheckBox from "../util/CheckBox";
+import RadioButton from "../util/RadioButon";
+import Table from "../util/SelectBox";
 import Paper from "@mui/material/Paper";
 
 // import Card from "../util/Card";
@@ -73,10 +67,10 @@ const Home = () => {
   const [courseOutline, setCourseOutline] = useState({});
   const handleFieldValueChange = (event) =>
     setCourseOutline({
-      ...courseOutline,
+      courseOutline,
       [event.target.name]: event.target.value,
     });
-
+  console.log(courseOutline);
   const getComponent = (field) => {
     switch (field.type) {
       case "text":
@@ -86,7 +80,7 @@ const Home = () => {
             name={field.name}
             onChange={handleFieldValueChange}
             value={courseOutline[field.name]}
-            required={`${field.title}${field.required?"*":""}`}
+            required={`${field.title}${field.required ? "*" : ""}`}
           />
         );
       case "textArea":
@@ -98,7 +92,7 @@ const Home = () => {
             onChange={handleFieldValueChange}
             name={field.name}
             value={courseOutline[field.name]}
-            required={`${field.title}${field.required?"*":""}`}
+            required={`${field.title}${field.required ? "*" : ""}`}
           />
         );
       case "select":
@@ -112,13 +106,24 @@ const Home = () => {
             required={field.required}
           />
         );
+      case "checkBox":
+        return (
+          <CheckBox
+            changeHandler={handleFieldValueChange}
+            name={field.name}
+            label={field.label}
+            selectedValue={courseOutline[field.name]}
+            values={field.values}
+            required={field.required}
+          />
+        );
       default:
-        return ;
+        return;
     }
   };
 
   return (
-    <Container style={{margin:"40px auto"}}>
+    <Container style={{ margin: "40px auto" }}>
       <Paper elevation={4}>
         <Grid container>
           <List sx={style} component="nav" aria-label="mailbox folders">
@@ -126,11 +131,12 @@ const Home = () => {
               <>
                 <ListItem style={{ padding: "30px 20px" }}>
                   <Grid item sm={3}>
-                    {`${field.title} ${field.required?"*":""}`}
+                    {`${field.title} ${field.required ? "*" : ""}`}
                   </Grid>
                   <Grid item sm={9}>
                     {getComponent(field)}
                   </Grid>
+                  {/* <Table /> */}
                 </ListItem>
                 <Divider />
               </>
@@ -146,6 +152,12 @@ const Home = () => {
               </Grid>
             </ListItem>
 */}
+            <ListItem style={{ padding: "30px 20px" }}>
+              <Grid item sm={12}>
+                <RadioButton />
+                <Table />
+              </Grid>
+            </ListItem>
           </List>
         </Grid>
       </Paper>

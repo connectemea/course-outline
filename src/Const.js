@@ -1,3 +1,4 @@
+// Drop down vales
 const courseStreamValues = [
   "Commerce and Management",
   "Humanities and Social Science",
@@ -22,6 +23,19 @@ const yearValues = [
   "2021-2022",
   "2022-2023",
   "2023-2024",
+];
+
+// Check box values
+
+const assessmentMethod = [
+"Assignments",
+"Homeworks",
+"Class Tests",
+"Unit Tests",
+"Practical Tests",
+"Term Exam",
+"Seminars",
+"Lab Experiments",
 ];
 
 export const dataFields = [
@@ -126,5 +140,13 @@ export const dataFields = [
     name: "internetResources",
     type: "text",
     label: "Internet Resources",
+  },
+
+  {
+    title: "Assessment Method",
+    name: "assessmentMethod",
+    type: "checkBox",
+    label: "Assessment Method",
+    values: assessmentMethod,
   },
 ];

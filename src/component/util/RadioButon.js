@@ -1,22 +1,30 @@
-import * as React from 'react';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import * as React from "react";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
-export default function RadioButtonsGroup() {
+export default function RadioButton() {
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">Gender</FormLabel>
+      <FormLabel component="legend">External Exam paper</FormLabel>
       <RadioGroup
-        aria-label="gender"
-        defaultValue="female"
-        name="radio-buttons-group"
+        row
+        aria-label="externalExamMark"
+        name="row-radio-buttons-group"
       >
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
-        <FormControlLabel value="other" control={<Radio />} label="Other" />
+        <FormControlLabel
+          value="female"
+          control={<Radio />}
+          label="Total Mark 80"
+        />
+        <FormControlLabel
+          value="male"
+          control={<Radio />}
+          label="Total Mark 60"
+        />
+        {/* <FormControlLabel value="other" control={<Radio />} label="Other" /> */}
       </RadioGroup>
     </FormControl>
   );

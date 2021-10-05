@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
 export default function FullWidthTextField(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <Box
       sx={{
