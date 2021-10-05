@@ -4,7 +4,7 @@ import Select from "../util/SelectBox";
 import TextField from "../util/TextField";
 import CheckBox from "../util/CheckBox";
 import RadioButton from "../util/RadioButon";
-import Table from "../util/SelectBox";
+import Table from "../util/Table";
 import Paper from "@mui/material/Paper";
 
 // import Card from "../util/Card";
@@ -22,46 +22,6 @@ const style = {
   width: "100%",
   bgcolor: "background.paper",
 };
-
-// const listItem = (props) => {
-//   const { compType, field } = props;
-//   const getComponent = (type) => {
-//     switch (type) {
-//       case "text":
-//         return (
-//           <TextField
-//             label={field.label || ""}
-//             placeholder={field.placeHolder || ""}
-//           />
-//         );
-//       case "textArea":
-//         return (
-//           <TextField
-//             label={field.label || ""}
-//             placeholder={field.placeHolder || ""}
-//             multiline
-//             rows={3}
-//           />
-//         );
-//       case "select":
-//         return <Select />;
-//     }
-//   };
-//   return (
-//     <>
-//       <ListItem>
-//         <Grid item sm={3}>
-//           Name of the Stream
-//         </Grid>
-//         <Grid item sm={9}>
-//           {/* <Select /> */}
-//           {getComponent(compType)}
-//         </Grid>
-//       </ListItem>
-//       <Divider />
-//     </>
-//   );
-// };
 
 const Home = () => {
   const [courseOutline, setCourseOutline] = useState({});
