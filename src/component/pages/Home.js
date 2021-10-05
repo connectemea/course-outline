@@ -1,10 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import Select from "../util/SelectBox";
+import SelectBox from "../util/SelectBox";
 import TextField from "../util/TextField";
 import CheckBox from "../util/CheckBox";
+<<<<<<< HEAD
 import RadioButton from "../util/RadioButon";
 import Table from "../util/Table";
+=======
+// import RadioButton from "../util/RadioButon";
+import DataTable from "../util/DataTable";
+>>>>>>> 82e7a24b23481ab79e18e5cdf485a0baf09abd66
 import Paper from "@mui/material/Paper";
 
 // import Card from "../util/Card";
@@ -57,7 +62,7 @@ const Home = () => {
         );
       case "select":
         return (
-          <Select
+          <SelectBox
             changeHandler={handleFieldValueChange}
             name={field.name}
             label={field.label}
@@ -77,6 +82,8 @@ const Home = () => {
             required={field.required}
           />
         );
+      case "table":
+        return <DataTable />;
       default:
         return;
     }
@@ -112,12 +119,6 @@ const Home = () => {
               </Grid>
             </ListItem>
 */}
-            <ListItem style={{ padding: "30px 20px" }}>
-              <Grid item sm={12}>
-                <RadioButton />
-                <Table />
-              </Grid>
-            </ListItem>
           </List>
         </Grid>
       </Paper>

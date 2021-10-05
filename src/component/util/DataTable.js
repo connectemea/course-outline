@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Grid} from "@mui/material";
+import RadioButton from "../util/RadioButon";
 import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
@@ -39,13 +41,16 @@ const rows = [
 export default function Table() {
   return (
     <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
+      <Grid item sm={12}>
+        <RadioButton />
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+        />
+      </Grid>
     </div>
   );
 }

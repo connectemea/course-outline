@@ -40,6 +40,10 @@ const assessmentMethod = [
 
 export const dataFields = [
   {
+    title: "marks",
+    type:"table"
+  },
+  {
     title: "Name of the Stream",
     name: "courseStream",
     label: "select course stream",
@@ -145,7 +149,7 @@ export const dataFields = [
   {
     title: "Assessment Method",
     name: "assessmentMethod",
-    type: "checkBox",
+    type: "checkbox",
     label: "Assessment Method",
     values: assessmentMethod,
   },
