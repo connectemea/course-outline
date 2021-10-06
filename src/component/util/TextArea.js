@@ -7,6 +7,7 @@ export default function EmptyTextarea() {
       aria-label="empty textarea"
       placeholder="Empty"
       style={{ width: 200 }}
+      // name={props.name}
     />
   );
 }

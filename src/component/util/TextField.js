@@ -18,6 +18,7 @@ export default function FullWidthTextField(props) {
         placeholder={props.placeholder}
         multiline={props.multiline}
         rows={props.rows}
+        name={props.name}
       />
     </Box>
   );

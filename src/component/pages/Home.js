@@ -3,13 +3,9 @@ import { useState } from "react";
 import SelectBox from "../util/SelectBox";
 import TextField from "../util/TextField";
 import CheckBox from "../util/CheckBox";
-<<<<<<< HEAD
-import RadioButton from "../util/RadioButon";
-import Table from "../util/Table";
-=======
 // import RadioButton from "../util/RadioButon";
-import DataTable from "../util/DataTable";
->>>>>>> 82e7a24b23481ab79e18e5cdf485a0baf09abd66
+import InternalExamTable from "../util/InternalExamTable";
+import ExternalExamTable from "../util/ExternalExamTable";
 import Paper from "@mui/material/Paper";
 
 // import Card from "../util/Card";
@@ -30,12 +26,13 @@ const style = {
 
 const Home = () => {
   const [courseOutline, setCourseOutline] = useState({});
-  const handleFieldValueChange = (event) =>
+  const handleFieldValueChange = (event) => {
     setCourseOutline({
       courseOutline,
       [event.target.name]: event.target.value,
     });
-  console.log(courseOutline);
+    console.log("its loged");
+  };
   const getComponent = (field) => {
     switch (field.type) {
       case "text":
@@ -82,8 +79,28 @@ const Home = () => {
             required={field.required}
           />
         );
-      case "table":
-        return <DataTable />;
+      case "tableInternal":
+        return (
+          <InternalExamTable
+            name={field.name}
+            cols={field.cols}
+            rows={field.rows}
+            changeHandler={handleFieldValueChange}
+            selectedValue={courseOutline[field.name]}
+          />
+        );
+      case "tableExternal":
+        return (
+          <ExternalExamTable
+            name={field.name}
+            cols={field.cols}
+            // rows={field.rows}
+            rows60={field.rows60}
+            rows80={field.rows80}
+            changeHandler={handleFieldValueChange}
+            selectedValue={courseOutline[field.name]}
+          />
+        );
       default:
         return;
     }
