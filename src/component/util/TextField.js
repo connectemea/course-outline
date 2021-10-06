@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 
 export default function FullWidthTextField(props) {
   // console.log(props);
+
   return (
     <Box
       sx={{
@@ -18,6 +19,9 @@ export default function FullWidthTextField(props) {
         placeholder={props.placeholder}
         multiline={props.multiline}
         rows={props.rows}
+        name={props.name}
+        value={props.value}
+        onChange={props.onChange}
       />
     </Box>
   );
