@@ -16,6 +16,7 @@ export default function SelectBox(props) {
           id="demo-simple-select"
           value={selectedValue}
           label={label}
+          name={name}
           onChange={changeHandler}
         >
           {values.map((value) => (
