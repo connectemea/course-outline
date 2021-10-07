@@ -7,6 +7,7 @@ import CheckBox from "../util/CheckBox";
 import InternalExamTable from "../util/InternalExamTable";
 import ExternalExamTable from "../util/ExternalExamTable";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
 
 // import Card from "../util/Card";
 
@@ -28,11 +29,33 @@ const Home = () => {
   const [courseOutline, setCourseOutline] = useState({});
   const handleFieldValueChange = (event) => {
     setCourseOutline({
-      courseOutline,
+      ...courseOutline,
       [event.target.name]: event.target.value,
     });
-    console.log("its loged");
   };
+  const handleFormSubmission = (event) => {
+    console.log(courseOutline);
+  };
+  const handleCheckBoxChange = (event) => {
+    setCourseOutline(
+      courseOutline[event.target.name]
+        ? {
+            ...courseOutline,
+            [event.target.name]: courseOutline[event.target.name].includes(
+              event.target.value
+            )
+              ? courseOutline[event.target.name].filter(
+                  (value) => value !== event.target.value
+                )
+              : [...courseOutline[event.target.name], event.target.value],
+          }
+        : {
+            ...courseOutline,
+            [event.target.name]: [event.target.value],
+          }
+    );
+  };
+
   const getComponent = (field) => {
     switch (field.type) {
       case "text":
@@ -68,13 +91,13 @@ const Home = () => {
             required={field.required}
           />
         );
-      case "checkBox":
+      case "checkbox":
         return (
           <CheckBox
-            changeHandler={handleFieldValueChange}
+            changeHandler={handleCheckBoxChange}
             name={field.name}
             label={field.label}
-            selectedValue={courseOutline[field.name]}
+            selectedValue={courseOutline[field.name] || []}
             values={field.values}
             required={field.required}
           />
@@ -136,6 +159,9 @@ const Home = () => {
               </Grid>
             </ListItem>
 */}
+            <Button variant="contained" onClick={handleFormSubmission}>
+              Preview
+            </Button>
           </List>
         </Grid>
       </Paper>
