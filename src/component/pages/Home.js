@@ -3,18 +3,11 @@ import { useState } from "react";
 import SelectBox from "../util/SelectBox";
 import TextField from "../util/TextField";
 import CheckBox from "../util/CheckBox";
-// import RadioButton from "../util/RadioButon";
 import DataTable from "../util/DataTable";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-
-// import Card from "../util/Card";
-
-// import List from "../../List/List";
-
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-// import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { dataFields } from "../../Const";
 import { Grid, Container } from "@mui/material";
@@ -23,46 +16,6 @@ const style = {
   width: "100%",
   bgcolor: "background.paper",
 };
-
-// const listItem = (props) => {
-//   const { compType, field } = props;
-//   const getComponent = (type) => {
-//     switch (type) {
-//       case "text":
-//         return (
-//           <TextField
-//             label={field.label || ""}
-//             placeholder={field.placeHolder || ""}
-//           />
-//         );
-//       case "textArea":
-//         return (
-//           <TextField
-//             label={field.label || ""}
-//             placeholder={field.placeHolder || ""}
-//             multiline
-//             rows={3}
-//           />
-//         );
-//       case "select":
-//         return <Select />;
-//     }
-//   };
-//   return (
-//     <>
-//       <ListItem>
-//         <Grid item sm={3}>
-//           Name of the Stream
-//         </Grid>
-//         <Grid item sm={9}>
-//           {/* <Select /> */}
-//           {getComponent(compType)}
-//         </Grid>
-//       </ListItem>
-//       <Divider />
-//     </>
-//   );
-// };
 
 const Home = () => {
   const [courseOutline, setCourseOutline] = useState({});
