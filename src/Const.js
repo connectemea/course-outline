@@ -28,21 +28,106 @@ const yearValues = [
 // Check box values
 
 const assessmentMethod = [
-"Assignments",
-"Homeworks",
-"Class Tests",
-"Unit Tests",
-"Practical Tests",
-"Term Exam",
-"Seminars",
-"Lab Experiments",
+  "Assignments",
+  "Homeworks",
+  "Class Tests",
+  "Unit Tests",
+  "Practical Tests",
+  "Term Exam",
+  "Seminars",
+  "Lab Experiments",
 ];
 
-export const dataFields = [
+// Tabele Data
+const internalExamCols = ["Items", "Mark 20", "Mark 15"];
+
+const internalExmaRows = [
+  { items: "Assignment", mark20: "4", mark15: "3" },
+  { items: "Test Paper(s)/Viva voce", mark20: "8", mark15: "6" },
+  { items: "Seminar/Presentation", mark20: "4", mark15: "3" },
   {
-    title: "marks",
-    type:"table"
+    items: "Class Room Particpation based on Attendance",
+    mark20: "4",
+    mark15: "3",
   },
+  { items: "Total", mark20: "20", mark15: "15" },
+];
+
+const externalExamCols = [
+  "Question Type",
+  "No of Question",
+  "Mark/Question",
+  "Total Marks",
+];
+
+const externalExamRows60 = [
+  {
+    questionType: "Short Questions(2-3 Sentences)",
+    noQuestion: "12",
+    mQ: "2",
+    totalMarks: "Ceiling 20",
+  },
+  {
+    questionType: "Paragraph / Problem Type",
+    noQuestion: "7",
+    mQ: "5",
+    totalMarks: "Ceiling 30",
+  },
+  {
+    questionType: "Essay Type",
+    noQuestion: "2 out of 4",
+    mQ: "10",
+    totalMarks: "10",
+  },
+  {
+    questionType: "Total",
+    noQuestion: " ",
+    mQ: " ",
+    totalMarks: "60",
+  },
+  {
+    questionType: "Time",
+    noQuestion: " ",
+    mQ: " ",
+    totalMarks: "2 hrs",
+  },
+];
+
+const externalExamRows80 = [
+  {
+    questionType: "Short Questions(2-3 Sentences)",
+    noQuestion: "15",
+    mQ: "2",
+    totalMarks: "Ceiling 25",
+  },
+  {
+    questionType: "Paragraph / Problem Type",
+    noQuestion: "8",
+    mQ: "5",
+    totalMarks: "Ceiling 35",
+  },
+  {
+    questionType: "Essay Type",
+    noQuestion: "2 out of 4",
+    mQ: "10",
+    totalMarks: "10",
+  },
+  {
+    questionType: "Total",
+    noQuestion: " ",
+    mQ: " ",
+    totalMarks: "80",
+  },
+  {
+    questionType: "Time",
+    noQuestion: " ",
+    mQ: " ",
+    totalMarks: "2.5 hrs",
+  },
+];
+
+// const externalExam60Cols =
+export const dataFields = [
   {
     title: "Name of the Stream",
     name: "courseStream",
@@ -152,5 +237,20 @@ export const dataFields = [
     type: "checkbox",
     label: "Assessment Method",
     values: assessmentMethod,
+  },
+  {
+    title: "Internal",
+    type: "tableInternal",
+    cols: internalExamCols,
+    rows: internalExmaRows,
+    name: "Internal",
+  },
+  {
+    title: "External",
+    type: "tableExternal",
+    cols: externalExamCols,
+    rows60: externalExamRows60,
+    rows80: externalExamRows80,
+    name: "External",
   },
 ];

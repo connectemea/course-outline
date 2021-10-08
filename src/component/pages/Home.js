@@ -4,6 +4,8 @@ import SelectBox from "../util/SelectBox";
 import TextField from "../util/TextField";
 import CheckBox from "../util/CheckBox";
 import DataTable from "../util/DataTable";
+import InternalExamTable from "../util/InternalExamTable";
+import ExternalExamTable from "../util/ExternalExamTable";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
@@ -94,8 +96,28 @@ const Home = () => {
             required={field.required}
           />
         );
-      case "table":
-        return <DataTable />;
+      case "tableInternal":
+        return (
+          <InternalExamTable
+            name={field.name}
+            cols={field.cols}
+            rows={field.rows}
+            changeHandler={handleFieldValueChange}
+            selectedValue={courseOutline[field.name]}
+          />
+        );
+      case "tableExternal":
+        return (
+          <ExternalExamTable
+            name={field.name}
+            cols={field.cols}
+            // rows={field.rows}
+            rows60={field.rows60}
+            rows80={field.rows80}
+            changeHandler={handleFieldValueChange}
+            selectedValue={courseOutline[field.name]}
+          />
+        );
       default:
         return;
     }
