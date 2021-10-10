@@ -3,7 +3,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
-export default function CheckBox(props) {
+export default function CheckBoxInput(props) {
   const { name, label, values, required, changeHandler,selectedValue } = props;
 
   return (
@@ -11,7 +11,6 @@ export default function CheckBox(props) {
       {values.map((value) => (
         <FormControlLabel control={<Checkbox onChange={changeHandler} name={name} value={value} checked={selectedValue.includes(value)}/>} label={value}/>
       ))}
-      {/* <FormControlLabel control={<Checkbox />} label="Label" /> */}
     </FormGroup>
   );
 }

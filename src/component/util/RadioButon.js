@@ -24,7 +24,6 @@ export default function RadioButton() {
           control={<Radio />}
           label="Total Mark 60"
         />
-        {/* <FormControlLabel value="other" control={<Radio />} label="Other" /> */}
       </RadioGroup>
     </FormControl>
   );

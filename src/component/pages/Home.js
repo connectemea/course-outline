@@ -1,9 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import SelectBox from "../util/SelectBox";
-import TextField from "../util/TextField";
-import CheckBox from "../util/CheckBox";
-import DataTable from "../util/DataTable";
+import SelectBox from "../util/SelectInput";
+import TextInput from "../util/TextInput";
+import CheckBox from "../util/CheckBoxInput";
 import InternalExamTable from "../util/InternalExamTable";
 import ExternalExamTable from "../util/ExternalExamTable";
 import Paper from "@mui/material/Paper";
@@ -13,6 +12,9 @@ import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import { dataFields } from "../../Const";
 import { Grid, Container } from "@mui/material";
+import CoveredPortions from "../util/CoveredPortions";
+import GraduatesAttributes from "../util/GraduatesAttributes"
+import TextAreaInput from "../util/TextArea";
 
 const style = {
   width: "100%",
@@ -30,6 +32,14 @@ const Home = () => {
   const handleFormSubmission = (event) => {
     console.log(courseOutline);
   };
+
+  const handleAddMoreCoveredPortion = (value) =>
+    setCourseOutline({
+      ...courseOutline,
+      courseSchedule: courseOutline.courseSchedule
+        ? [...courseOutline.courseSchedule, value]
+        : [value],
+    });
   const handleCheckBoxChange = (event) => {
     setCourseOutline(
       courseOutline[event.target.name]
@@ -54,7 +64,7 @@ const Home = () => {
     switch (field.type) {
       case "text":
         return (
-          <TextField
+          <TextInput
             label={field.label || ""}
             name={field.name}
             onChange={handleFieldValueChange}
@@ -64,14 +74,13 @@ const Home = () => {
         );
       case "textArea":
         return (
-          <TextField
+          <TextAreaInput
             label={field.label || ""}
-            multiline
-            rows={3}
             onChange={handleFieldValueChange}
             name={field.name}
             value={courseOutline[field.name]}
             required={`${field.title}${field.required ? "*" : ""}`}
+            // sample={"this is an sample"}
           />
         );
       case "select":
@@ -111,13 +120,28 @@ const Home = () => {
           <ExternalExamTable
             name={field.name}
             cols={field.cols}
-            // rows={field.rows}
             rows60={field.rows60}
             rows80={field.rows80}
             changeHandler={handleFieldValueChange}
             selectedValue={courseOutline[field.name]}
           />
         );
+      case "courseSchedule":
+        return (
+          <CoveredPortions
+            addMoreHandler={handleAddMoreCoveredPortion}
+            addedPortion={courseOutline["courseSchedule"] || []}
+          />
+        );
+      case "graduateAttributes":
+        return(
+          <GraduatesAttributes
+            textChangeHandler={handleFieldValueChange}
+            checkBoxChangeHandler={handleCheckBoxChange}
+            courseOutline={courseOutline}
+            fieldValues={field}
+          />
+        )
       default:
         return;
     }
@@ -130,32 +154,32 @@ const Home = () => {
           <List sx={style} component="nav" aria-label="mailbox folders">
             {dataFields.map((field) => (
               <>
-                <ListItem style={{ padding: "30px 20px" }}>
-                  <Grid item sm={3}>
-                    {`${field.title} ${field.required ? "*" : ""}`}
-                  </Grid>
-                  <Grid item sm={9}>
-                    {getComponent(field)}
-                  </Grid>
-                  {/* <Table /> */}
+                <ListItem style={{ padding: "20px" }}>
+                  {field.title ? (
+                    <>
+                      <Grid item sm={3}>
+                        {`${field.title} ${field.required ? "*" : ""}`}
+                      </Grid>
+                      <Grid item sm={9}>
+                        {getComponent(field)}
+                      </Grid>
+                    </>
+                  ) : (
+                    getComponent(field)
+                  )}
                 </ListItem>
                 <Divider />
               </>
             ))}
-            {/* 
-           
-              <Grid item sm={3}>
-                Assessment Method
-              </Grid>
-              <Grid item sm={9}>
-                <CheckBox color="primary" value="" />
-                <CheckBox color="primary" value="" />
-              </Grid>
+            <ListItem style={{ padding: "30px 20px" }}>
+              <Button
+                variant="contained"
+                style={{ margin: "0 auto" }}
+                onClick={handleFormSubmission}
+              >
+                Preview
+              </Button>
             </ListItem>
-*/}
-            <Button variant="contained" onClick={handleFormSubmission}>
-              Preview
-            </Button>
           </List>
         </Grid>
       </Paper>

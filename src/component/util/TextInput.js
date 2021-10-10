@@ -2,13 +2,11 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-export default function FullWidthTextField(props) {
-  // console.log(props);
+export default function TextInput(props) {
 
   return (
     <Box
       sx={{
-        // width: 500,
         maxWidth: "100%",
       }}
     >

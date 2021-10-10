@@ -239,18 +239,35 @@ export const dataFields = [
     values: assessmentMethod,
   },
   {
-    title: "Internal",
+    subTitle: "Internal",
     type: "tableInternal",
     cols: internalExamCols,
     rows: internalExmaRows,
     name: "Internal",
   },
   {
-    title: "External",
+    mainTitle:"External exam Pattern",
+    type:"mainTitle"
+  },
+  {
+    subTitle: "External",
     type: "tableExternal",
     cols: externalExamCols,
     rows60: externalExamRows60,
     rows80: externalExamRows80,
     name: "External",
   },
+  {
+    mainTitle:"Course schedule",
+    type:"courseSchedule",
+    label:"Course schedule"
+  },{
+    title:"Graduate Attributes",
+    type:"graduateAttributes",
+    label:"graduates attributes",
+    values:[
+      "knowledge",
+      "personal skill"
+    ]
+  }
 ];

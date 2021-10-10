@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function SelectBox(props) {
+export default function SelectInput(props) {
   const { changeHandler, name, selectedValue, label, values } = props;
   return (
     <Box sx={{ minWidth: 120 }}>

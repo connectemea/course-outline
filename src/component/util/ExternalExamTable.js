@@ -1,5 +1,3 @@
-// import * as React from "react";
-
 import {
   Paper,
   TableRow,
@@ -8,18 +6,19 @@ import {
   TableCell,
   TableBody,
   Table,
+  Grid
 } from "@mui/material";
 
 import RadioButton from "./RadioButon";
 
 export default function ExternalExamTable(props) {
   const { name, cols, rows60, rows80, changeHandler, selectedValue } = props;
-
   const isLodded = false;
 
   return (
+    <Grid item sm={12}>
+    <RadioButton />
     <TableContainer component={Paper}>
-      <RadioButton />
       <Table sx={{ minWidth: 500 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -63,5 +62,6 @@ export default function ExternalExamTable(props) {
         )}
       </Table>
     </TableContainer>
+    </Grid>
   );
 }
