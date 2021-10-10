@@ -1,29 +1,22 @@
 import React from "react";
 import { useState } from "react";
-import SelectBox from "../util/SelectBox";
-import TextField from "../util/TextField";
-import CheckBox from "../util/CheckBox";
-// import RadioButton from "../util/RadioButon";
+import SelectBox from "../util/SelectInput";
+import TextInput from "../util/TextInput";
+import CheckBox from "../util/CheckBoxInput";
 import InternalExamTable from "../util/InternalExamTable";
 import ExternalExamTable from "../util/ExternalExamTable";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-
-// import Card from "../util/Card";
-
-// import List from "../../List/List";
-
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-// import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import { dataFields } from "../../Const";
 import { Grid, Container } from "@mui/material";
+import CoveredPortions from "../util/CoveredPortions";
+import GraduatesAttributes from "../util/GraduatesAttributes";
+import TextAreaInput from "../util/TextArea";
+import courseOutlineField from "../../Const";
+import styles from "./styles.module.css";
 
-const style = {
-  width: "100%",
-  bgcolor: "background.paper",
-};
 
 const Home = () => {
   const [courseOutline, setCourseOutline] = useState({});
@@ -36,6 +29,14 @@ const Home = () => {
   const handleFormSubmission = (event) => {
     console.log(courseOutline);
   };
+
+  const handleAddMoreCoveredPortion = (value) =>
+    setCourseOutline({
+      ...courseOutline,
+      courseSchedule: courseOutline.courseSchedule
+        ? [...courseOutline.courseSchedule, value]
+        : [value],
+    });
   const handleCheckBoxChange = (event) => {
     setCourseOutline(
       courseOutline[event.target.name]
@@ -60,7 +61,7 @@ const Home = () => {
     switch (field.type) {
       case "text":
         return (
-          <TextField
+          <TextInput
             label={field.label || ""}
             name={field.name}
             onChange={handleFieldValueChange}
@@ -70,14 +71,13 @@ const Home = () => {
         );
       case "textArea":
         return (
-          <TextField
+          <TextAreaInput
             label={field.label || ""}
-            multiline
-            rows={3}
             onChange={handleFieldValueChange}
             name={field.name}
             value={courseOutline[field.name]}
             required={`${field.title}${field.required ? "*" : ""}`}
+            sample={field.sample || ""}
           />
         );
       case "select":
@@ -123,35 +123,74 @@ const Home = () => {
             selectedValue={courseOutline[field.name]}
           />
         );
+      case "courseSchedule":
+        return (
+          <CoveredPortions
+            addMoreHandler={handleAddMoreCoveredPortion}
+            addedPortion={courseOutline["courseSchedule"] || []}
+          />
+        );
+      case "graduateAttributes":
+        return (
+          <GraduatesAttributes
+            textChangeHandler={handleFieldValueChange}
+            checkBoxChangeHandler={handleCheckBoxChange}
+            courseOutline={courseOutline}
+            fieldValues={field}
+          />
+        );
       default:
         return;
     }
   };
 
   return (
-    <Container style={{ margin: "40px auto" }}>
-      <Paper elevation={4}>
-        <Grid container>
-          <List sx={style} component="nav" aria-label="mailbox folders">
-            {dataFields.map((field) => (
-              <>
-                <ListItem style={{ padding: "30px 20px" }}>
-                  <Grid item sm={3}>
-                    {`${field.title} ${field.required ? "*" : ""}`}
-                  </Grid>
-                  <Grid item sm={9}>
-                    {getComponent(field)}
-                  </Grid>
-                  {/* <Table /> */}
-                </ListItem>
-                <Divider />
-              </>
-            ))}
-            <Button variant="contained" onClick={handleFormSubmission}>
-              Preview
-            </Button>
-          </List>
-        </Grid>
+    <Container className={styles.formWrapper}>
+      <div className={styles.appTitle}>
+        <h1 className={styles.pageTitle}>Course Outline</h1>
+        <span className={styles.subTitle}>EMEA College</span>
+      </div>
+      <Paper elevation={4} className={styles.formContainer}>
+        {courseOutlineField.map((section) => (
+          <>
+            <h3 className={styles.sectiontHeading}> {section.heading}</h3>
+            <List sx={styles} component="ul" className={styles.fieldList}>
+              {section.fields.map((field) => (
+                <>
+                  <ListItem className={styles.fieldListItem}>
+                    <Grid container>
+                      {field.title ? (
+                        <>
+                          <Grid item sm={3}>
+                            {`${field.title} ${field.required ? "*" : ""}`}
+                          </Grid>
+                          <Grid item sm={9}>
+                            {getComponent(field)}
+                          </Grid>
+                        </>
+                      ) : (
+                        getComponent(field)
+                      )}
+                    </Grid>
+                  </ListItem>
+                  <Divider />
+                </>
+              ))}
+              {/* <ListItem style={{ padding: "30px 20px" }}>
+
+            </ListItem> */}
+            </List>
+          </>
+        ))}
+        <div class={styles.btnContainer}>
+          <Button
+            variant="contained"
+            style={{ margin: "0 auto" }}
+            onClick={handleFormSubmission}
+          >
+            Preview
+          </Button>
+        </div>
       </Paper>
     </Container>
   );

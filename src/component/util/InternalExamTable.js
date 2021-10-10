@@ -8,11 +8,17 @@ import {
   TableCell,
   TableBody,
   Table,
+  Grid
 } from "@mui/material";
 
 export default function InternalExamTable(props) {
-  const { name, cols, rows, changeHandler, selectedValue } = props;
+  const {  cols, rows } = props;
   return (
+    <Grid container item direction="row">
+    <Grid container item >
+      <Grid sm={12}>
+
+
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="simple table">
         <TableHead>
@@ -38,5 +44,8 @@ export default function InternalExamTable(props) {
         </TableBody>
       </Table>
     </TableContainer>
+    </Grid>
+    </Grid>
+    </Grid>
   );
 }

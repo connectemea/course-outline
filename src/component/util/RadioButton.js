@@ -3,7 +3,6 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 
 export default function RadioButton({ radiovalue, value }) {
   const handleChange = (e) => {
@@ -12,7 +11,6 @@ export default function RadioButton({ radiovalue, value }) {
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">External Exam paper</FormLabel>
       <RadioGroup
         row
         aria-label="externalExamMark"
@@ -23,15 +21,15 @@ export default function RadioButton({ radiovalue, value }) {
           value="col80"
           control={<Radio />}
           label="Total Mark 80"
-          checked={value == "col80" && true}
+          checked={value === "col80" }
         />
         <FormControlLabel
           onChange={(e) => handleChange(e)}
           value="col60"
           control={<Radio />}
           label="Total Mark 60"
+          checked={value === "col60" }
         />
-        {/* <FormControlLabel value="other" control={<Radio />} label="Other" /> */}
       </RadioGroup>
     </FormControl>
   );
