@@ -28,11 +28,6 @@ export default function CoveredPortions(props) {
   };
   return (
     <Grid container direction="row" spacing={2}>
-      <Grid item container>
-        <Grid item sm={8}>
-          <h3>Course schedule</h3>
-        </Grid>
-      </Grid>
       {addedPortion.length?(
         <>
           <Grid item container spacing={2}>

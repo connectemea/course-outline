@@ -12,14 +12,9 @@ import {
 } from "@mui/material";
 
 export default function InternalExamTable(props) {
-  const { name, cols, rows, changeHandler, selectedValue } = props;
+  const {  cols, rows } = props;
   return (
     <Grid container item direction="row">
-          <Grid item container>
-        <Grid item sm={8}>
-          <h3>Internal Exam Pattern</h3>
-        </Grid>
-      </Grid>
     <Grid container item >
       <Grid sm={12}>
 

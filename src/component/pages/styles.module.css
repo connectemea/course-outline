@@ -1,0 +1,47 @@
+/* .formWrapper {
+  margin: 80px auto 10px;
+} */
+.appTitle{
+    text-align: center;
+    padding:30px 0;
+    color:white;
+}
+
+.pageTitle{
+    font-size: 40px;
+    font-weight:600;
+    margin:0;
+    margin-bottom:8px;
+    text-shadow:0px 4px 3px rgba(0,0,0,.4),
+    0px 8px 13px rgba(0,0,0,.1),
+    0px 18px 23px rgba(0,0,0,.1);
+}
+
+
+.subTitle{
+    font-size:20px;
+    font-size:500;
+    text-shadow:0px 4px 3px rgba(0,0,0,.4),
+    0px 8px 13px rgba(0,0,0,.1),
+    0px 18px 23px rgba(0,0,0,.1);
+}
+.formContainer {
+  padding: 30px;
+}
+
+.sectiontHeading {
+  font-weight: 500;
+  font-size: 25px;
+  margin: 0;
+}
+.fieldList{
+    padding:15px 15px !important;
+}
+.fieldListItem {
+  padding: 20px 10px !important;
+}
+/* submit button section */
+.btnContainer {
+  text-align: center;
+  padding: 20px 0;
+}

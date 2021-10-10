@@ -10,16 +10,13 @@ import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
-import { dataFields } from "../../Const";
 import { Grid, Container } from "@mui/material";
 import CoveredPortions from "../util/CoveredPortions";
-import GraduatesAttributes from "../util/GraduatesAttributes"
+import GraduatesAttributes from "../util/GraduatesAttributes";
 import TextAreaInput from "../util/TextArea";
+import courseOutlineField from "../../Const";
+import styles from "./styles.module.css";
 
-const style = {
-  width: "100%",
-  bgcolor: "background.paper",
-};
 
 const Home = () => {
   const [courseOutline, setCourseOutline] = useState({});
@@ -80,7 +77,7 @@ const Home = () => {
             name={field.name}
             value={courseOutline[field.name]}
             required={`${field.title}${field.required ? "*" : ""}`}
-            // sample={"this is an sample"}
+            sample={field.sample || ""}
           />
         );
       case "select":
@@ -134,54 +131,66 @@ const Home = () => {
           />
         );
       case "graduateAttributes":
-        return(
+        return (
           <GraduatesAttributes
             textChangeHandler={handleFieldValueChange}
             checkBoxChangeHandler={handleCheckBoxChange}
             courseOutline={courseOutline}
             fieldValues={field}
           />
-        )
+        );
       default:
         return;
     }
   };
 
   return (
-    <Container style={{ margin: "40px auto" }}>
-      <Paper elevation={4}>
-        <Grid container>
-          <List sx={style} component="nav" aria-label="mailbox folders">
-            {dataFields.map((field) => (
-              <>
-                <ListItem style={{ padding: "20px" }}>
-                  {field.title ? (
-                    <>
-                      <Grid item sm={3}>
-                        {`${field.title} ${field.required ? "*" : ""}`}
-                      </Grid>
-                      <Grid item sm={9}>
-                        {getComponent(field)}
-                      </Grid>
-                    </>
-                  ) : (
-                    getComponent(field)
-                  )}
-                </ListItem>
-                <Divider />
-              </>
-            ))}
-            <ListItem style={{ padding: "30px 20px" }}>
-              <Button
-                variant="contained"
-                style={{ margin: "0 auto" }}
-                onClick={handleFormSubmission}
-              >
-                Preview
-              </Button>
-            </ListItem>
-          </List>
-        </Grid>
+    <Container className={styles.formWrapper}>
+      <div className={styles.appTitle}>
+        <h1 className={styles.pageTitle}>Course Outline</h1>
+        <span className={styles.subTitle}>EMEA College</span>
+      </div>
+      <Paper elevation={4} className={styles.formContainer}>
+        {courseOutlineField.map((section) => (
+          <>
+            <h3 className={styles.sectiontHeading}> {section.heading}</h3>
+            <List sx={styles} component="ul" className={styles.fieldList}>
+              {section.fields.map((field) => (
+                <>
+                  <ListItem className={styles.fieldListItem}>
+                    <Grid container>
+                      {field.title ? (
+                        <>
+                          <Grid item sm={3}>
+                            {`${field.title} ${field.required ? "*" : ""}`}
+                          </Grid>
+                          <Grid item sm={9}>
+                            {getComponent(field)}
+                          </Grid>
+                        </>
+                      ) : (
+                        getComponent(field)
+                      )}
+                    </Grid>
+                  </ListItem>
+                  <Divider />
+                </>
+              ))}
+              {/* <ListItem style={{ padding: "30px 20px" }}>
+
+            </ListItem> */}
+            </List>
+          </>
+        ))}
+        <div class={styles.btnContainer}>
+          <Button
+            variant="contained"
+            style={{ margin: "0 auto" }}
+            onClick={handleFormSubmission}
+          >
+            Preview
+          </Button>
+        </div>
       </Paper>
     </Container>
   );
