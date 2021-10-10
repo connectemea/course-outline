@@ -117,7 +117,6 @@ const Home = () => {
           <ExternalExamTable
             name={field.name}
             cols={field.cols}
-            // rows={field.rows}
             rows60={field.rows60}
             rows80={field.rows80}
             changeHandler={handleFieldValueChange}
@@ -148,17 +147,6 @@ const Home = () => {
                 <Divider />
               </>
             ))}
-            {/* 
-           
-              <Grid item sm={3}>
-                Assessment Method
-              </Grid>
-              <Grid item sm={9}>
-                <CheckBox color="primary" value="" />
-                <CheckBox color="primary" value="" />
-              </Grid>
-            </ListItem>
-*/}
             <Button variant="contained" onClick={handleFormSubmission}>
               Preview
             </Button>

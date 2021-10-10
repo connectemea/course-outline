@@ -1,5 +1,4 @@
-// import * as React from "react";
-
+import * as React from "react";
 import {
   Paper,
   TableRow,
@@ -9,17 +8,21 @@ import {
   TableBody,
   Table,
 } from "@mui/material";
+import { useState } from "react";
 
 import RadioButton from "./RadioButon";
 
 export default function ExternalExamTable(props) {
+  const [value, setValue] = useState("col80");
   const { name, cols, rows60, rows80, changeHandler, selectedValue } = props;
 
-  const isLodded = false;
+  const handleRadio = (val) => {
+    setValue(val);
+  };
 
   return (
     <TableContainer component={Paper}>
-      <RadioButton />
+      <RadioButton value={value} radiovalue={handleRadio} />
       <Table sx={{ minWidth: 500 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -28,9 +31,9 @@ export default function ExternalExamTable(props) {
             ))}
           </TableRow>
         </TableHead>
-        {isLodded ? (
+        {value == "col60" ? (
           <TableBody>
-            {rows80.map((row) => (
+            {rows60.map((row) => (
               <TableRow
                 key={row.items}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -46,7 +49,7 @@ export default function ExternalExamTable(props) {
           </TableBody>
         ) : (
           <TableBody>
-            {rows60.map((row) => (
+            {rows80.map((row) => (
               <TableRow
                 key={row.items}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
