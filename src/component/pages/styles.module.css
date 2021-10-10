@@ -1,6 +1,6 @@
-/* .formWrapper {
-  margin: 80px auto 10px;
-} */
+.formWrapper {
+    padding-bottom:30px;
+}
 .appTitle{
     text-align: center;
     padding:30px 0;
