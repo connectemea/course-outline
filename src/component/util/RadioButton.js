@@ -18,17 +18,17 @@ export default function RadioButton({ radiovalue, value }) {
       >
         <FormControlLabel
           onChange={(e) => handleChange(e)}
-          value="col80"
+          value="rows80"
           control={<Radio />}
           label="Total Mark 80"
-          checked={value === "col80" }
+          checked={value === "rows80" }
         />
         <FormControlLabel
           onChange={(e) => handleChange(e)}
-          value="col60"
+          value="rows60"
           control={<Radio />}
           label="Total Mark 60"
-          checked={value === "col60" }
+          checked={value === "rows60" }
         />
       </RadioGroup>
     </FormControl>

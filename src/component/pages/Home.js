@@ -10,16 +10,20 @@ import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
-import { Grid, Container } from "@mui/material";
+import PreviewIcon from "@mui/icons-material/Preview";
+import BackspaceIcon from "@mui/icons-material/Backspace";
+import { Grid, Tooltip } from "@mui/material";
 import CoveredPortions from "../util/CoveredPortions";
 import GraduatesAttributes from "../util/GraduatesAttributes";
 import TextAreaInput from "../util/TextArea";
 import courseOutlineField from "../../Const";
 import styles from "./styles.module.css";
+import { useHistory } from "react-router";
 
-
-const Home = () => {
-  const [courseOutline, setCourseOutline] = useState({});
+const Home = (props) => {
+  const { setPreviewData, previewData } = props;
+  const [courseOutline, setCourseOutline] = useState(previewData);
+  const history = useHistory();
   const handleFieldValueChange = (event) => {
     setCourseOutline({
       ...courseOutline,
@@ -27,7 +31,12 @@ const Home = () => {
     });
   };
   const handleFormSubmission = (event) => {
-    console.log(courseOutline);
+    setPreviewData({
+      ...courseOutline,
+      InternalTable:"created",
+      ExternalTable: courseOutline["ExternalTable"] || "rows80",
+    });
+    history.push("/preview");
   };
 
   const handleAddMoreCoveredPortion = (value) =>
@@ -56,6 +65,12 @@ const Home = () => {
           }
     );
   };
+  const handleTableChange = (value) =>
+    setCourseOutline({
+      ...courseOutline,
+      ExternalTable: value,
+    });
+  const handleFormReset = () => history.go(0);
 
   const getComponent = (field) => {
     switch (field.type) {
@@ -119,7 +134,7 @@ const Home = () => {
             cols={field.cols}
             rows60={field.rows60}
             rows80={field.rows80}
-            changeHandler={handleFieldValueChange}
+            changeHandler={handleTableChange}
             selectedValue={courseOutline[field.name]}
           />
         );
@@ -145,54 +160,60 @@ const Home = () => {
   };
 
   return (
-    <Container className={styles.formWrapper}>
-      <div className={styles.appTitle}>
-        <h1 className={styles.pageTitle}>Course Outline</h1>
-        <span className={styles.subTitle}>EMEA College</span>
-      </div>
-      <Paper elevation={4} className={styles.formContainer}>
-        {courseOutlineField.map((section) => (
-          <>
-            <h3 className={styles.sectiontHeading}> {section.heading}</h3>
-            <List sx={styles} component="ul" className={styles.fieldList}>
-              {section.fields.map((field) => (
-                <>
-                  <ListItem className={styles.fieldListItem}>
-                    <Grid container>
-                      {field.title ? (
-                        <>
-                          <Grid item sm={3}>
-                            {`${field.title} ${field.required ? "*" : ""}`}
-                          </Grid>
-                          <Grid item sm={9}>
-                            {getComponent(field)}
-                          </Grid>
-                        </>
-                      ) : (
-                        getComponent(field)
-                      )}
-                    </Grid>
-                  </ListItem>
-                  <Divider />
-                </>
-              ))}
-              {/* <ListItem style={{ padding: "30px 20px" }}>
+    <Paper elevation={4} className={styles.formContainer}>
+      {courseOutlineField.map((section) => (
+        <>
+          <h3 className={styles.sectiontHeading}> {section.heading}</h3>
+          <List sx={styles} component="ul" className={styles.fieldList}>
+            {section.fields.map((field) => (
+              <>
+                <ListItem className={styles.fieldListItem}>
+                  <Grid container>
+                    {field.title ? (
+                      <>
+                        <Grid item sm={3}>
+                          {`${field.title} ${field.required ? "*" : ""}`}
+                        </Grid>
+                        <Grid item sm={9}>
+                          {getComponent(field)}
+                        </Grid>
+                      </>
+                    ) : (
+                      getComponent(field)
+                    )}
+                  </Grid>
+                </ListItem>
+                <Divider />
+              </>
+            ))}
+          </List>
+        </>
+      ))}
 
-            </ListItem> */}
-            </List>
-          </>
-        ))}
-        <div class={styles.btnContainer}>
+      <div class={styles.btnContainer}>
+        <Tooltip disableFocusListener title="Show your word document model">
           <Button
             variant="contained"
-            style={{ margin: "0 auto" }}
+            className={styles.customBtn}
             onClick={handleFormSubmission}
           >
+            <PreviewIcon className={styles.btnIcon} />
             Preview
           </Button>
-        </div>
-      </Paper>
-    </Container>
+        </Tooltip>
+        <Tooltip disableFocusListener title="Clear all input field">
+          <Button
+            variant="contained"
+            color="error"
+            className={styles.customBtn}
+            onClick={handleFormReset}
+          >
+            <BackspaceIcon className={styles.btnIcon} />
+            Reset
+          </Button>
+        </Tooltip>
+      </div>
+    </Paper>
   );
 };
 
