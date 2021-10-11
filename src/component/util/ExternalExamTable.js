@@ -13,11 +13,12 @@ import { useState } from "react";
 import RadioButton from "./RadioButton";
 
 export default function ExternalExamTable(props) {
-  const [value, setValue] = useState("col80");
-  const { cols, rows60, rows80} = props;
+  const [value, setValue] = useState("rows80");
+  const { cols, rows60, rows80, changeHandler } = props;
 
   const handleRadio = (val) => {
     setValue(val);
+    changeHandler(val);
   };
 
   return (
@@ -32,7 +33,7 @@ export default function ExternalExamTable(props) {
               ))}
             </TableRow>
           </TableHead>
-          {value === "col60" ? (
+          {value === "rows60" ? (
             <TableBody>
               {rows60.map((row) => (
                 <TableRow

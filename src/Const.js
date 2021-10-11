@@ -16,14 +16,19 @@ const courseNatureValues = [
 
 const semesterValues = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth"];
 
-const yearValues = [
-  "2018-2019",
-  "2019-2020",
-  "2020-2021",
-  "2021-2022",
-  "2022-2023",
-  "2023-2024",
-];
+const generateYearStr = () => {
+  const year = new Date().getFullYear() - 3;
+  return [...Array(6).keys()].map((key) => `${year + key}-${year + key + 1}`);
+};
+// const yearValues = [
+//   "2018-2019",
+//   "2019-2020",
+//   "2020-2021",
+//   "2021-2022",
+//   "2022-2023",
+//   "2023-2024",
+// ];
+const yearValues = generateYearStr();
 
 // Check box values
 
@@ -244,7 +249,7 @@ const internalExamTable = [
     type: "tableInternal",
     cols: internalExamCols,
     rows: internalExmaRows,
-    name: "Internal",
+    name: "InternalTable",
   },
 ];
 
@@ -255,12 +260,45 @@ const externalExamTable = [
     cols: externalExamCols,
     rows60: externalExamRows60,
     rows80: externalExamRows80,
-    name: "External",
+    name: "ExternalTable",
   },
   {
-    title: "Graduate Attributes",
+    subTitle: "Graduate Attributes",
     type: "graduateAttributes",
+    name: "gradutesAttributeCourseName",
     label: "graduates attributes",
+    collapse: {
+      Knowledge: [],
+      "Acedemic and Intelictual Skill": [
+        "Self Learning",
+        "Collaberative Learning",
+        "Cognitive Skills",
+      ],
+      "Professional Skills": [
+        "Communication Skills",
+        "Teamwork and leadership",
+        "Decision Making",
+        "Critical and aneletical Skills",
+        "IT Skills",
+        "Cross cultural skills",
+        "Problem Solving Skills",
+        "Research Skills",
+        "Enterpruenur Aptitude",
+      ],
+      "Personal Skills": [
+        "Creative Thinking",
+        "Lifelong learning",
+        "Application Skills",
+        "life Skills",
+      ],
+      "Aptitude and Values": [
+        "Social Responcipility",
+        "Ethical commitment",
+        "Global Citizen",
+        "Nation Building",
+        "Secular Outlook",
+      ],
+    },
     values: ["knowledge", "personal skill"],
   },
 ];
@@ -268,6 +306,7 @@ const externalExamTable = [
 const courseSchedule = [
   {
     mainTitle: "Course schedule",
+    name: "courseSchedule",
     type: "courseSchedule",
     label: "Course schedule",
   },
@@ -324,147 +363,3 @@ const courseOutlineField = [
 ];
 
 export default courseOutlineField;
-
-// const externalExam60Cols =
-// export const dataFields = [
-//   {
-//     title: "Name of the Stream",
-//     name: "courseStream",
-//     label: "select course stream",
-//     type: "select",
-//     values: courseStreamValues,
-//   },
-//   {
-//     title: "Name of the Programme",
-//     name: "programmeName",
-//     type: "text",
-//     label: "programme name",
-//     required: true,
-//   },
-//   {
-//     title: "Name of the Course",
-//     name: "courseName",
-//     type: "text",
-//     label: "Course Name",
-//     required: true,
-//   },
-//   {
-//     title: "Nature of the Course ",
-//     name: "courseNature",
-//     label: "select course nature",
-//     type: "select",
-//     values: courseNatureValues,
-//   },
-//   {
-//     title: "Semester",
-//     name: "semester",
-//     label: "select semester",
-//     type: "select",
-//     values: semesterValues,
-//   },
-//   {
-//     title: "Lecturer(s)",
-//     name: "lecture",
-//     type: "textArea",
-//     label: "Lecturer Name",
-//   },
-//   {
-//     title: "Coordinator Name",
-//     name: "coordinatorName",
-//     type: "textArea",
-//     label: "Coordinator Name ",
-//   },
-//   {
-//     title: "Year",
-//     name: "year",
-//     label: "select year",
-//     type: "select",
-//     values: yearValues,
-//   },
-//   {
-//     title: "No of Credits ",
-//     name: "noCredits",
-//     type: "text",
-//     label: "No of Credits ",
-//   },
-//   {
-//     title: "No of Contact Hours ",
-//     name: "noContactHours",
-//     type: "text",
-//     label: "No of Contact Hours ",
-//   },
-//   {
-//     title: "Course Description ",
-//     name: "courseDescription",
-//     type: "text",
-//     label: "Course Description",
-//   },
-//   {
-//     title: "Course Objectives ",
-//     name: "courseObjectives",
-//     type: "text",
-//     label: "Course Objectives",
-//   },
-//   {
-//     title: "Course Outcome ",
-//     name: "courseOutcome",
-//     type: "text",
-//     label: "Course Outcome",
-//   },
-//   {
-//     title: "Text Book",
-//     name: "textBook",
-//     type: "textArea",
-//     label: "Text Book",
-//   },
-//   {
-//     title: "References",
-//     name: "references",
-//     type: "textArea",
-//     label: "References",
-//   },
-//   {
-//     title: "Internet Resources",
-//     name: "internetResources",
-//     type: "text",
-//     label: "Internet Resources",
-//   },
-
-//   {
-//     title: "Assessment Method",
-//     name: "assessmentMethod",
-//     type: "checkbox",
-//     label: "Assessment Method",
-//     values: assessmentMethod,
-//   },
-//   {
-//     subTitle: "Internal",
-//     type: "tableInternal",
-//     cols: internalExamCols,
-//     rows: internalExmaRows,
-//     name: "Internal",
-//   },
-//   {
-//     mainTitle: "External exam Pattern",
-//     type: "mainTitle",
-//   },
-//   {
-//     subTitle: "External",
-//     type: "tableExternal",
-//     cols: externalExamCols,
-//     rows60: externalExamRows60,
-//     rows80: externalExamRows80,
-//     name: "External",
-//   },
-//   {
-//     mainTitle: "Course schedule",
-//     type: "courseSchedule",
-//     label: "Course schedule",
-//   },
-//   {
-//     title: "Graduate Attributes",
-//     type: "graduateAttributes",
-//     label: "graduates attributes",
-//     values: ["knowledge", "personal skill"],
-//   },
-// ];
