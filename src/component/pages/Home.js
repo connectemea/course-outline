@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SelectBox from "../util/SelectInput";
 import TextInput from "../util/TextInput";
 import CheckBox from "../util/CheckBoxInput";
@@ -16,13 +16,25 @@ import { Grid, Tooltip } from "@mui/material";
 import CoveredPortions from "../util/CoveredPortions";
 import GraduatesAttributes from "../util/GraduatesAttributes";
 import TextAreaInput from "../util/TextArea";
-import courseOutlineField from "../../Const";
+import courseOutlineField, { courseOutlineArray } from "../../Const";
 import styles from "./styles.module.css";
 import { useHistory } from "react-router";
 
 const Home = (props) => {
   const { setPreviewData, previewData } = props;
   const [courseOutline, setCourseOutline] = useState(previewData);
+  const [isDisabled, setIsDisabled] = useState(true);
+  useEffect(() => {
+    const updateDisableState = () =>
+      setIsDisabled(
+        courseOutlineArray.find(
+          (item) => item.required && !courseOutline[item.name]
+        )
+          ? true
+          : false
+      );
+    updateDisableState();
+  }, [courseOutline]);
   const history = useHistory();
   const handleFieldValueChange = (event) => {
     setCourseOutline({
@@ -33,7 +45,7 @@ const Home = (props) => {
   const handleFormSubmission = (event) => {
     setPreviewData({
       ...courseOutline,
-      InternalTable:"created",
+      InternalTable: "created",
       ExternalTable: courseOutline["ExternalTable"] || "rows80",
     });
     history.push("/preview");
@@ -70,7 +82,10 @@ const Home = (props) => {
       ...courseOutline,
       ExternalTable: value,
     });
-  const handleFormReset = () => history.go(0);
+  const handleFormReset = () => {
+    history.go(0);
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  };
 
   const getComponent = (field) => {
     switch (field.type) {
@@ -163,7 +178,9 @@ const Home = (props) => {
     <Paper elevation={4} className={styles.formContainer}>
       {courseOutlineField.map((section) => (
         <>
-          <h3 className={styles.sectiontHeading}> {section.heading}</h3>
+          <h3 className={styles.sectiontHeading}>
+            {`${section.heading} ${section.required ? "*" : ""}`}
+          </h3>
           <List sx={styles} component="ul" className={styles.fieldList}>
             {section.fields.map((field) => (
               <>
@@ -191,15 +208,24 @@ const Home = (props) => {
       ))}
 
       <div class={styles.btnContainer}>
-        <Tooltip disableFocusListener title="Show your word document model">
-          <Button
-            variant="contained"
-            className={styles.customBtn}
-            onClick={handleFormSubmission}
-          >
-            <PreviewIcon className={styles.btnIcon} />
-            Preview
-          </Button>
+        <Tooltip
+          title={
+            isDisabled
+              ? "Fill * fields to enable preview"
+              : "Show your word document model"
+          }
+        >
+          <span>
+            <Button
+              variant="contained"
+              className={styles.customBtn}
+              onClick={handleFormSubmission}
+              disabled={isDisabled}
+            >
+              <PreviewIcon className={styles.btnIcon} />
+              Preview
+            </Button>
+          </span>
         </Tooltip>
         <Tooltip disableFocusListener title="Clear all input field">
           <Button

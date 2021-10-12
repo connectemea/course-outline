@@ -54,14 +54,21 @@
 .courseName{
   font-size:20px;
   font-weight:600;
+  margin:0;
 }
 
 .majorTitle{
   font-size:15px;
   font-weight:600;
+  margin:0;
 
 }
 
 .attributesContainer{
   padding-left:80px;
+}
+
+.innerListContainer{
+  flex-direction:column;
+  align-items: flex-start !important;
 }

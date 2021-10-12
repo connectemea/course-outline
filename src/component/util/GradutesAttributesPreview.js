@@ -17,7 +17,7 @@ export default function GradutesAttributesPreview(props) {
       <Grid container item>
         <Grid sm={12}>
           <TableContainer>
-            <Table>
+            <Table border="1" width="100%" cellpadding="15">
               <TableBody>
                 <TableRow key={courseName}>
                   <TableCell
@@ -26,12 +26,12 @@ export default function GradutesAttributesPreview(props) {
                     Graduates Attributes
                   </TableCell>
                   <TableCell className={styles.tableCell}>
-                    <div className={styles.courseName}>{courseName}</div>
-                    <div className={styles.attributesContainer}>
+                    <h3 className={styles.courseName}>{courseName}</h3>
+                    <List className={styles.attributesContainer}>
                       {Object.keys(field.collapse).map((collap) =>
                         previewData[collap]?.length ? (
-                          <>
-                            <div className={styles.majorTitle}>{collap}</div>
+                          <ListItem className={styles.innerListContainer}>
+                            <h5 className={styles.majorTitle}>{collap}</h5>
                             {field.collapse[collap].length ? (
                               <List>
                                 {previewData[collap].map((item) => (
@@ -39,10 +39,10 @@ export default function GradutesAttributesPreview(props) {
                                 ))}
                               </List>
                             ) : null}
-                          </>
+                          </ListItem>
                         ) : null
                       )}
-                    </div>
+                    </List>
                   </TableCell>
                 </TableRow>
               </TableBody>

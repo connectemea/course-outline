@@ -20,13 +20,46 @@ import CoveredPortionsPreview from "../util/CoveredPortionsPreview";
 
 export default function Preview(props) {
   const { previewData } = props;
-  console.log(previewData);
   const history = useHistory();
   const handleBackEvent = () => history.push("/home");
   const handleExportToWord = () => {
-    console.log(previewData);
+    const preHtml =
+      "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    const postHtml = "</body></html>";
+
+    const html = `${preHtml} ${
+      document.getElementById("docWrapper").innerHTML
+    } ${postHtml}`;
+
+    const blob = new Blob(["\ufeff", html], {
+      type: "application/msword",
+    });
+
+    const url = `data:application/vnd.ms-word;charset=utf-8,${encodeURIComponent(
+      html
+    )}`;
+
+    const filename = previewData["courseName"]
+      ? `${previewData["courseName"]}.doc`
+      : "courseOutline.doc";
+
+    const downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+
+    if (navigator.msSaveOrOpenBlob) {
+      navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+      downloadLink.href = url;
+      downloadLink.download = filename;
+      downloadLink.click();
+    }
+
+    document.body.removeChild(downloadLink);
+    history.push("/home");
+    // history.go(0);
   };
-  const getPreviewComponent = (field, ) => {
+  const getPreviewComponent = (field) => {
     switch (field.type) {
       case "text":
         return (
@@ -88,44 +121,54 @@ export default function Preview(props) {
   };
   return (
     <Paper elevation={4} className={styles.formContainer}>
-      <h2 className={styles.courseTitleSection}>
-        {previewData.courseName || "Python Programming"} (
-        {previewData.year || "2020 - 2021"})
-      </h2>
-      {courseOutlineField.map((section) => (
-        <>
-          <h3 className={styles.previewSectiontHeading}> {section.heading}</h3>
-          <Table sx={styles} className={styles.fieldList}>
-            <TableBody>
-              {section.fields.map((field) => (
-                <>
-                  {previewData[field.name] && (
-                    <TableRow className={styles.fieldListItem}>
-                      {/* <Grid container> */}
-                      {field.title ? (
-                        <>
-                          <TableCell
-                            className={`${styles.tableCell} ${styles.headingTable}`}
-                          >
-                            {field.title}
-                          </TableCell>
-                          <TableCell className={styles.tableCell}>
-                            {getPreviewComponent(field)}
-                          </TableCell>
-                        </>
-                      ) : (
-                        getPreviewComponent(field)
-                      )}
-                      {/* </Grid> */}
-                    </TableRow>
-                  )}
-                </>
-              ))}
-            </TableBody>
-          </Table>
-        </>
-      ))}
-
+      <div id="docWrapper">
+        <h1 className={styles.courseTitleSection}>
+          {previewData.courseName || "Course outline"} (
+          {previewData.year || "2020 - 2021"})
+        </h1>
+        {courseOutlineField.map((section) => (
+          <>
+            <h2 className={styles.previewSectiontHeading}>
+              {section.heading}
+            </h2>
+            <Table
+              sx={styles}
+              className={styles.fieldList}
+              style={{border:"1px solid rgba(224, 224, 224, 1) !important"}}
+              border={section.innerTable?"0":"1"}
+              width="100%"
+              cellpadding={section.innerTable?"0":"15"}
+            >
+              <TableBody>
+                {section.fields.map((field) => (
+                  <>
+                    {previewData[field.name] && (
+                      <TableRow className={styles.fieldListItem}>
+                        {/* <Grid container> */}
+                        {field.title ? (
+                          <>
+                            <TableCell
+                              className={`${styles.tableCell} ${styles.headingTable}`}
+                            >
+                              <h4 className={styles.colTitle}>{field.title}</h4>
+                            </TableCell>
+                            <TableCell className={styles.tableCell}>
+                              {getPreviewComponent(field)}
+                            </TableCell>
+                          </>
+                        ) : (
+                          getPreviewComponent(field)
+                        )}
+                        {/* </Grid> */}
+                      </TableRow>
+                    )}
+                  </>
+                ))}
+              </TableBody>
+            </Table>
+          </>
+        ))}
+      </div>
       <div class={styles.btnContainer}>
         <Tooltip disableFocusListener title="Go back to form">
           <Button
