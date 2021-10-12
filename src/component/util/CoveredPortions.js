@@ -6,6 +6,9 @@ import {
   MenuItem,
   FormControl,
   Button,
+  Table,
+  TableCell,
+  TableRow
 } from "@mui/material";
 import { useState } from "react";
 
@@ -32,19 +35,22 @@ export default function CoveredPortions(props) {
         <>
           <Grid item container spacing={2}>
             <Grid item sm={8}>
-              <h3>Portions Covered</h3>
+              <h4 style={{margin:"0"}}>Portions Covered</h4>
             </Grid>
           </Grid>
+          <Table >
           {addedPortion.map((portion) => (
-            <Grid item container spacing={2}>
-              <Grid item sm={8}>
+            <TableRow>
+              <TableCell >
                 <p>{portion.discribtion}</p>
-              </Grid>
-              <Grid item sm={4}>
+              </TableCell>
+              <TableCell >
                 <h4>{portion.duration}</h4>
-              </Grid>
-            </Grid>
+              </TableCell>
+              </TableRow>
           ))}
+          </Table>
+
         </>
       ):null}
 

@@ -138,6 +138,7 @@ const personalDetails = [
     label: "select course stream",
     type: "select",
     values: courseStreamValues,
+    required: true,
   },
   {
     title: "Name of the Programme",
@@ -151,6 +152,14 @@ const personalDetails = [
     name: "courseName",
     type: "text",
     label: "Course Name",
+    required: true,
+  },
+  {
+    title: "Year",
+    name: "year",
+    label: "select year",
+    type: "select",
+    values: yearValues,
     required: true,
   },
   {
@@ -178,13 +187,6 @@ const personalDetails = [
     name: "coordinatorName",
     type: "textArea",
     label: "Coordinator Name ",
-  },
-  {
-    title: "Year",
-    name: "year",
-    label: "select year",
-    type: "select",
-    values: yearValues,
   },
   {
     title: "No of Credits ",
@@ -308,6 +310,7 @@ const courseSchedule = [
     mainTitle: "Course schedule",
     name: "courseSchedule",
     type: "courseSchedule",
+    required: true,
     label: "Course schedule",
   },
 ];
@@ -318,12 +321,14 @@ const contactDetails = [
     name: "name",
     type: "text",
     label: "Enter your name",
+    required: true,
   },
   {
     title: "Phone",
     name: "phone",
     type: "text",
     label: "Enter your phone",
+    required: true,
   },
   {
     title: "Email",
@@ -347,19 +352,32 @@ const courseOutlineField = [
   {
     heading: "Internal Exam Pattern",
     fields: internalExamTable,
+    innerTable:true
   },
   {
     heading: "External Exam Pattern",
     fields: externalExamTable,
+    innerTable:true
+
   },
   {
     heading: "Course Schedule",
     fields: courseSchedule,
+    innerTable:true,
+    required: true,
   },
   {
     heading: "Contact Details",
     fields: contactDetails,
   },
 ];
+
+export const courseOutlineArray = [
+  ...personalDetails,
+  ...internalExamCols,
+  ...externalExamTable,
+  ...courseSchedule,
+  ...contactDetails
+]
 
 export default courseOutlineField;
