@@ -69,6 +69,7 @@
 }
 
 .innerListContainer{
+  padding-left:15px !important;
   flex-direction:column;
   align-items: flex-start !important;
 }

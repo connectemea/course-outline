@@ -57,7 +57,7 @@ export default function Preview(props) {
 
     document.body.removeChild(downloadLink);
     history.push("/home");
-    // history.go(0);
+    history.go(0);
   };
   const getPreviewComponent = (field) => {
     switch (field.type) {
