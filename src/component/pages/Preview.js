@@ -50,7 +50,7 @@ export default function Preview(props) {
       "</style>";
     //  Image Area %%%%
     let options = { maxWidth: 624 };
-    let images = Array();
+    let images = [];
     let img = $("#" + element).find("img");
     for (let i = 0; i < img.length; i++) {
       // Calculate dimensions of output image
@@ -196,7 +196,7 @@ export default function Preview(props) {
       <div className={styles.coverPageWrapper}>
         <div id="coverImage" className={styles.coverImageContainer}>
           <div className={styles.imgContainer}>
-            <img className={styles.emeaLogo} src={emeaLogo} />
+            <img className={styles.emeaLogo} src={emeaLogo} alt="emeaLogo"/>
           </div>
           <div className={styles.courseDetails}>
             {/* <div className={styles.courseTitle}>Course Outline</div> */}
