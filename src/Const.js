@@ -14,7 +14,7 @@ const courseNatureValues = [
   "Open course",
 ];
 
-const semesterValues = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth"];
+export const semesterValues = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth"];
 
 const generateYearStr = () => {
   const year = new Date().getFullYear() - 3;
@@ -131,6 +131,39 @@ const externalExamRows80 = [
   },
 ];
 
+const graduateAttributes =  {
+  Knowledge: [],
+  "Acedemic and Intelictual Skill": [
+    "Self Learning",
+    "Collaberative Learning",
+    "Cognitive Skills",
+  ],
+  "Professional Skills": [
+    "Communication Skills",
+    "Teamwork and leadership",
+    "Decision Making",
+    "Critical and aneletical Skills",
+    "IT Skills",
+    "Cross cultural skills",
+    "Problem Solving Skills",
+    "Research Skills",
+    "Enterpruenur Aptitude",
+  ],
+  "Personal Skills": [
+    "Creative Thinking",
+    "Lifelong learning",
+    "Application Skills",
+    "life Skills",
+  ],
+  "Aptitude and Values": [
+    "Social Responcipility",
+    "Ethical commitment",
+    "Global Citizen",
+    "Nation Building",
+    "Secular Outlook",
+  ],
+};
+
 const personalDetails = [
   {
     title: "Name of the Stream",
@@ -174,6 +207,7 @@ const personalDetails = [
     name: "semester",
     label: "select semester",
     type: "select",
+    required: true,
     values: semesterValues,
   },
   {
@@ -203,19 +237,20 @@ const personalDetails = [
   {
     title: "Course Description ",
     name: "courseDescription",
-    type: "text",
+    type: "textArea",
+    sample:"This course introduce students to literary texts and their unique conventions and contours-the linguistic, the social, the cultural and the political. The course is more of a search for the \"why” and “how” rather than the “what” of literature.\n\n Creative texts are analysed organically in participatory classrooms with teachers and students dialoguing with the text",
     label: "Course Description",
   },
   {
     title: "Course Objectives ",
     name: "courseObjectives",
-    type: "text",
+    type: "textArea",
     label: "Course Objectives",
   },
   {
     title: "Course Outcome ",
     name: "courseOutcome",
-    type: "text",
+    type: "textArea",
     label: "Course Outcome",
   },
   {
@@ -269,38 +304,7 @@ const externalExamTable = [
     type: "graduateAttributes",
     name: "gradutesAttributeCourseName",
     label: "graduates attributes",
-    collapse: {
-      Knowledge: [],
-      "Acedemic and Intelictual Skill": [
-        "Self Learning",
-        "Collaberative Learning",
-        "Cognitive Skills",
-      ],
-      "Professional Skills": [
-        "Communication Skills",
-        "Teamwork and leadership",
-        "Decision Making",
-        "Critical and aneletical Skills",
-        "IT Skills",
-        "Cross cultural skills",
-        "Problem Solving Skills",
-        "Research Skills",
-        "Enterpruenur Aptitude",
-      ],
-      "Personal Skills": [
-        "Creative Thinking",
-        "Lifelong learning",
-        "Application Skills",
-        "life Skills",
-      ],
-      "Aptitude and Values": [
-        "Social Responcipility",
-        "Ethical commitment",
-        "Global Citizen",
-        "Nation Building",
-        "Secular Outlook",
-      ],
-    },
+    collapse:graduateAttributes,
     values: ["knowledge", "personal skill"],
   },
 ];
