@@ -196,19 +196,19 @@ const personalDetails = [
     required: true,
   },
   {
-    title: "Nature of the Course ",
-    name: "courseNature",
-    label: "select course nature",
-    type: "select",
-    values: courseNatureValues,
-  },
-  {
     title: "Semester",
     name: "semester",
     label: "select semester",
     type: "select",
     required: true,
     values: semesterValues,
+  },
+  {
+    title: "Nature of the Course ",
+    name: "courseNature",
+    label: "select course nature",
+    type: "select",
+    values: courseNatureValues,
   },
   {
     title: "Lecturer(s)",
