@@ -2,14 +2,18 @@
 .formContainer {
   padding: 30px;
 }
-
+.coverPageWrapper{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+}
 .sectiontHeading {
   font-weight: 500;
   font-size: 25px;
   margin: 0;
 }
-.fieldList{
-    padding:15px 15px !important;
+.fieldList {
+  padding: 15px 15px !important;
 }
 .fieldListItem {
   padding: 20px 10px !important;
@@ -19,56 +23,111 @@
   text-align: center;
   padding: 20px 0;
 }
-.customBtn{
-  margin-right:30px !important;
+.customBtn {
+  margin-right: 30px !important;
 }
-.btnIcon{
-  margin-right:5px;
+.btnIcon {
+  margin-right: 5px;
 }
 
 /* preview page styles */
 
-.courseTitleSection{
-  font-size:30px;
-  font-weight:500;
+/* coverImage section */
+.coverImageContainer {
+  height: 1100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width:820px;
+}
+
+.emeaLogo {
+  width: 180px;
+  margin-bottom: 100px;
+}
+.courseDetails {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.courseTime,
+.courseHeading {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,.3);
+  border-top: none;
+  border-left: none;
+}
+.courseTime {
+  /* padding-left: 60px; */
+  color: #728FCE;
+  font-size: 45px;
+  font-weight: 600;
+  padding-right: 20px;
+  border-left: none;
   text-align: center;
 }
-.previewSectiontHeading{
+
+.courseHeading {
+  padding-left: 50px;
+  font-size: 30px;
+  font-weight: 600;
+  justify-content: center;
+  border-right: none;
+}
+
+.courseInfo {
+  border-radius: 8px;
+  margin: 30px 80px;
+  padding: 10px 15px;
+  text-align: justify;
+  background: #b7ffbf;
+}
+
+.courseTitleSection {
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+}
+.previewSectiontHeading {
   font-weight: 500;
   font-size: 25px;
   margin: 0;
-  padding:15px 0;
+  padding: 15px 0;
 }
-.tableCell{
-  border:1px solid rgba(224, 224, 224, 1);
+.tableCell {
+  border: 1px solid rgba(224, 224, 224, 1);
 }
 
-.headingTable{
-  width:40% !important;
-  font-weight:500;
-  font-size:18px;
+.headingTable {
+  width: 40% !important;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 /* Gradutes attributes preview */
 
-.courseName{
-  font-size:20px;
-  font-weight:600;
-  margin:0;
+.courseName {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
 }
 
-.majorTitle{
-  font-size:15px;
-  font-weight:600;
-  margin:0;
-
+.majorTitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
 }
 
-.attributesContainer{
-  padding-left:80px;
+.attributesContainer {
+  padding-left: 80px;
 }
 
-.innerListContainer{
-  flex-direction:column;
+.innerListContainer {
+  padding-left: 15px !important;
+  flex-direction: column;
   align-items: flex-start !important;
 }

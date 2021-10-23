@@ -26,7 +26,8 @@ export default function GradutesAttributesPreview(props) {
                     Graduates Attributes
                   </TableCell>
                   <TableCell className={styles.tableCell}>
-                    <h3 className={styles.courseName}>{courseName}</h3>
+                    <h3 className={styles.courseName}>Course Name:</h3>
+                    <h5 className={styles.majorTitle}>{courseName}</h5>
                     <List className={styles.attributesContainer}>
                       {Object.keys(field.collapse).map((collap) =>
                         previewData[collap]?.length ? (
