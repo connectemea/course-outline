@@ -168,7 +168,7 @@ const personalDetails = [
   {
     title: "Name of the Stream",
     name: "courseStream",
-    label: "select course stream",
+    label: "Select Course Stream",
     type: "select",
     values: courseStreamValues,
     required: true,
@@ -177,7 +177,7 @@ const personalDetails = [
     title: "Name of the Programme",
     name: "programmeName",
     type: "text",
-    label: "programme name",
+    label: "Programme Name",
     required: true,
   },
   {
@@ -190,7 +190,7 @@ const personalDetails = [
   {
     title: "Year",
     name: "year",
-    label: "select year",
+    label: "Select Year",
     type: "select",
     values: yearValues,
     required: true,
@@ -198,7 +198,7 @@ const personalDetails = [
   {
     title: "Semester",
     name: "semester",
-    label: "select semester",
+    label: "Select Semester",
     type: "select",
     required: true,
     values: semesterValues,
@@ -206,7 +206,7 @@ const personalDetails = [
   {
     title: "Nature of the Course ",
     name: "courseNature",
-    label: "select course nature",
+    label: "Select Course Nature",
     type: "select",
     values: courseNatureValues,
   },
@@ -303,7 +303,7 @@ const externalExamTable = [
     subTitle: "Graduate Attributes",
     type: "graduateAttributes",
     name: "gradutesAttributeCourseName",
-    label: "graduates attributes",
+    label: "Graduates Attributes",
     collapse:graduateAttributes,
     values: ["knowledge", "personal skill"],
   },
@@ -315,7 +315,7 @@ const courseSchedule = [
     name: "courseSchedule",
     type: "courseSchedule",
     required: true,
-    label: "Course schedule",
+    label: "Course Schedule",
   },
 ];
 
@@ -324,27 +324,27 @@ const contactDetails = [
     title: "Name",
     name: "name",
     type: "text",
-    label: "Enter your name",
+    label: "Enter Your Name",
     required: true,
   },
   {
     title: "Phone",
     name: "phone",
     type: "text",
-    label: "Enter your phone",
+    label: "Enter Your Phone",
     required: true,
   },
   {
     title: "Email",
     name: "email",
     type: "text",
-    label: "Enter your email",
+    label: "Enter Your Email",
   },
   {
     title: "Website",
     name: "website",
     type: "text",
-    label: "Enter your website",
+    label: "Enter Your Website url",
   },
 ];
 
