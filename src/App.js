@@ -11,11 +11,10 @@ function App() {
     <Router>
       <Switch>
         <div className="appContainer">
-          {" "}
           <Container className="formWrapper">
             <div className="appTitle">
               <h1 className="pageTitle">Course Outline</h1>
-              <span className="subTitle">EMEA College</span>
+              <span className="subTitle">EMEA College of Arts and Science</span>
             </div>
             <Route
               exact

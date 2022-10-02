@@ -58,12 +58,8 @@ export default function CoveredPortions(props) {
         <Grid item sm={8}>
           <TextField
             fullWidth
-            label={"Portion covered"}
+            label={"Portion Covered"}
             rows="4"
-            // id={}
-            // placeholder={props.placeholder}
-            // multiline={props.multiline}
-            // rows={props.rows}
             multiline
             name={"discribtion"}
             value={coveredPortion.discribtion}
@@ -72,20 +68,17 @@ export default function CoveredPortions(props) {
         </Grid>
         <Grid item sm={4}>
           <FormControl fullWidth>
-            <InputLabel id={"course-outline"}>{"select week"}</InputLabel>
+            <InputLabel id={"course-outline"}>{"Select Week"}</InputLabel>
 
             <Select
               labelId={"course-outline"}
               id="demo-simple-select"
               value={coveredPortion.duration}
-              label={"select week"}
+              label={"Select Week"}
               name={"duration"}
               onChange={handleAddMoreCoveredPortion}
             >
-              {/* {values.map((value) => (
-            <MenuItem value={value}>{value}</MenuItem>
-          ))} */}
-              {Array.from({ length: 10 }, (_, i) => i + 1).map((value) => (
+              {Array.from({ length: 18 }, (_, i) => i + 1).map((value) => (
                 <MenuItem value={`week ${value}`}>week {value}</MenuItem>
               ))}
             </Select>
